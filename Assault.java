@@ -8,6 +8,12 @@ public class Assault extends Player {
         this.username = username;
         weaponChoice = chooseWeapon();
 
+        if (weaponChoice.equals("SMG") || weaponChoice.equals("Default SMG")) {
+            assaultSMG = new SMG();
+        } else if (weaponChoice.equals("Shotgun")) {
+            assaultShotgun = new Shotgun();
+        }
+
         System.out.printf("%s has chosen a %s as their weapon!%n", getUsername(), weaponChoice);
         System.out.printf("%s's health is %d%n", getUsername(), getHealth());
     }
@@ -15,8 +21,6 @@ public class Assault extends Player {
     @Override
     public void attack(Player otherPlayer) {
         if (weaponChoice.equals("SMG") || weaponChoice.equals("Default SMG")) {
-            assaultSMG = new SMG();
-
             assaultSMG.fire();
             otherPlayer.health -= assaultSMG.getDamage();
 
@@ -26,8 +30,6 @@ public class Assault extends Player {
         }
 
         if (weaponChoice.equals("Shotgun")) {
-            assaultShotgun = new Shotgun();
-
             assaultShotgun.fire();
             otherPlayer.health -= assaultShotgun.getDamage();
 
